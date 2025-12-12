@@ -93,7 +93,7 @@ export default function Hero() {
               style={{ transformStyle: "preserve-3d" }}
             >
               <img
-                src="/office-team-research-working.jpg"
+                src="/vjth-logo.png"
                 alt="Market Research Team"
                 className="w-full h-full object-cover"
               />
