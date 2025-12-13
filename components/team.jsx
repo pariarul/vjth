@@ -12,12 +12,12 @@ const team = [
   },
   {
     name: "Govindaiah M T",
-    role: "Co-Founder & Senior Manager",
+    role: "Co-Founder & Director of Client Services",
     image: "/Govindaiah.jpeg",
   },
   {
     name: "Kavitha R",
-    role: "Senior Project Manager",
+    role: "Associate Director & Project Manager ",
     image: "/Kavitha.jpeg",
   },
 ];

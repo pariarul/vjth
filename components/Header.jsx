@@ -3,20 +3,21 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import gsap from "gsap";
+import JoinPanelForm from "./JoinPanelForm"; // Separate component
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
-  // Scroll effect for header background
+  // Scroll effect
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Animate mobile menu open/close
+  // Animate mobile menu
   useEffect(() => {
     gsap.to(".mobile-menu", {
       duration: 0.35,
@@ -27,9 +28,9 @@ export default function Header() {
     });
   }, [mobileMenuOpen]);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    el?.scrollIntoView({ behavior: "smooth" });
     setMobileMenuOpen(false);
   };
 
@@ -37,13 +38,13 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-md"
-            : "bg-transparent border-b border-transparent"
+         
+             "bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-md"
+            
         }`}
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex items-center justify-between">
-          {/* LOGO + Company */}
+          {/* Logo */}
           <div className="flex items-center gap-2 sm:gap-3">
             <img
               src="/vjth-logo.png"
@@ -105,7 +106,6 @@ export default function Header() {
               {item}
             </button>
           ))}
-
           <button
             className="w-full mt-3 px-5 py-3 bg-blue-900 text-white rounded-xl shadow-md hover:bg-blue-800 transition"
             onClick={() => setModalOpen(true)}
@@ -130,29 +130,8 @@ export default function Header() {
               Join Our Panel
             </h2>
 
-            <form className="space-y-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <input
-                type="text"
-                placeholder="Phone Number"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <button
-                type="submit"
-                className="w-full px-5 py-3 bg-blue-900 text-white rounded-xl font-bold hover:bg-blue-800 transition"
-              >
-                Submit
-              </button>
-            </form>
+            {/* Use separate form component */}
+            <JoinPanelForm />
           </div>
         </div>
       )}
