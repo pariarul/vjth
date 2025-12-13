@@ -17,7 +17,7 @@ const team = [
   },
   {
     name: "Kavitha R",
-    role: "Associate Director & Project Management",
+    role: "Associate Director - Project Management",
     image: "/Kavitha.jpeg",
   },
 ];
