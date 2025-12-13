@@ -21,14 +21,18 @@ export default function JoinPanelForm() {
           required
         />
       </div>
-      <div>
-        <input
-          type="date"
-          placeholder="Birthday*"
-          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-      </div>
+
+<div  >
+
+  <input
+    type="date"
+    className="flex-1 px-4 py-3 border border-slate-300 rounded-lg
+               focus:outline-none focus:ring-2 focus:ring-blue-500"
+    required
+  />
+</div>
+
+
 
       <div className="md:col-span-2 col-span-2">
         <input

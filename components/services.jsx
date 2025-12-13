@@ -36,7 +36,7 @@ const services = [
   },
   {
     icon: Database,
-    image: "/panel.jpg",
+    image: "/Panel.jpg",
     title: "Panel Research",
     description:
       "High-precision market insights backed by expert researchers and verified audience panels.",
