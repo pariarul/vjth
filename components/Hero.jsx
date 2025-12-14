@@ -90,7 +90,7 @@ export default function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
             </span>
-            <span className="text-slate-600 font-bold text-xs uppercase tracking-wider">VjTH Market Research</span>
+            <span className="text-slate-600 font-bold text-xs  tracking-wider">VjTH Market Research</span>
           </motion.div>
 
           <motion.h1
@@ -112,14 +112,16 @@ export default function Hero() {
             ))}
           </motion.h1>
 
+            <span className="text-blue-600 font-semibold">Field</span>- <span className="text-indigo-600 font-semibold">Insight</span>-<span className="text-indigo-600 font-semibold">Intellect</span>.
+
           <motion.p
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.8 }}
             className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light"
           >
-            Transform your business decisions with data-driven insights from <span className="font-bold text-slate-900">VjTH</span>.
-            We deliver <span className="text-blue-600 font-semibold">Field</span>, <span className="text-indigo-600 font-semibold">Insight</span>, and <span className="text-purple-600 font-semibold">Intellect</span>.
+            Transform your business decisions with data-driven insights from <span className="font-bold text-slate-900">VjTH Market Research</span>.
+       
           </motion.p>
 
           <motion.div

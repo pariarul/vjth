@@ -36,9 +36,9 @@ export default function Contact() {
           {/* Info Cards - Light Clean Design */}
           <div className="lg:col-span-1 space-y-4">
             {[
-              { icon: Mail, title: "Email Us", txt: "info@vjthmr.com , rfq@vjthmr.com", sub: "Response within 24h" },
-              { icon: Phone, title: "Call Us", txt: "+91 9500033037 , +91 9980677134", sub: "Mon-Fri, 9am-6pm" },
-              { icon: MapPin, title: "Visit HQ", txt: "Bangalore – 560091 and Chennai – 600017", sub: "" }
+              { icon: Mail, title: "Email Us", txt: "info@vjthmr.com , rfq@vjthmr.com" },
+              { icon: Phone, title: "Call Us", txt: "+91 9500033037 , +91 9980677134"},
+              { icon: MapPin, title: "Visit HQ", txt: "Bangalore – 560091 and Chennai – 600017"}
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -72,11 +72,11 @@ export default function Contact() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700 ml-1">Full Name</label>
-                  <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-medium" placeholder="John Doe" />
+                  <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-medium" placeholder="Enter your name" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700 ml-1">Work Email</label>
-                  <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-medium" placeholder="john@company.com" />
+                  <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-medium" placeholder="Enter your email" />
                 </div>
               </div>
 
