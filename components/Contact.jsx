@@ -36,9 +36,9 @@ export default function Contact() {
           {/* Info Cards - Light Clean Design */}
           <div className="lg:col-span-1 space-y-4">
             {[
-              { icon: Mail, title: "Email Us", txt: "info@vjthmr.com", sub: "Response within 24h" },
-              { icon: Phone, title: "Call Us", txt: "+91 9500033037", sub: "Mon-Fri, 9am-6pm" },
-              { icon: MapPin, title: "Visit HQ", txt: "Bangalore, India", sub: "560091" }
+              { icon: Mail, title: "Email Us", txt: "info@vjthmr.com , rfq@vjthmr.com", sub: "Response within 24h" },
+              { icon: Phone, title: "Call Us", txt: "+91 9500033037 , +91 9980677134", sub: "Mon-Fri, 9am-6pm" },
+              { icon: MapPin, title: "Visit HQ", txt: "Bangalore – 560091 and Chennai – 600017", sub: "" }
             ].map((item, i) => (
               <motion.div
                 key={i}
