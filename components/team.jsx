@@ -1,149 +1,138 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import gsap from "gsap";
+import { motion } from "framer-motion";
+import { Linkedin, Twitter, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 const team = [
   {
     name: "Naveen Kumar R",
     role: "Co-Founder & Business Head",
     image: "/Naveen.jpeg",
+    bio: "Driving strategic growth and business innovation.",
   },
   {
     name: "Govindaiah M T",
     role: "Co-Founder & Director - Client Services",
     image: "/Govindaiah.jpeg",
+    bio: "Ensuring client success through dedicated service.",
   },
   {
     name: "Kavitha R",
     role: "Associate Director - Project Management",
     image: "/Kavitha.jpeg",
+    bio: "Expert project delivery and operational excellence.",
   },
 ];
 
-export default function Team() {
-  const { ref, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
-  });
-
-  const cardsRef = useRef([]);
-
-  useEffect(() => {
-    if (inView) {
-      gsap.fromTo(
-        ".about-block",
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
-      );
-
-      gsap.fromTo(
-        ".team-header",
-        { opacity: 0, y: -40 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
-      );
-
-      cardsRef.current.forEach((card, index) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 60, rotateY: -15 },
-          {
-            opacity: 1,
-            y: 0,
-            rotateY: 0,
-            duration: 0.8,
-            delay: index * 0.15,
-            ease: "power3.out",
-          }
-        );
-      });
-    }
-  }, [inView]);
-
+const Card = ({ member, index }) => {
   return (
-    <section
-      id="team"
-      ref={ref}
-      className="py-28 px-4 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden"
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.2 }}
+      className="group relative h-[450px] w-full overflow-hidden rounded-3xl bg-slate-900 shadow-2xl"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-1/4 w-1/3 h-1/3 bg-blue-100/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-1/3 h-1/3 bg-slate-100/20 rounded-full blur-3xl" />
+      <Image
+        src={member.image}
+        alt={member.name}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:grayscale-[50%]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-90" />
+
+      <div className="absolute inset-0 p-8 flex flex-col justify-end">
+        <div className="transform translate-y-8 transition-transform duration-500 group-hover:translate-y-0">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-2xl font-bold text-white leading-tight">{member.name}</h3>
+            <motion.div
+              whileHover={{ rotate: 45 }}
+              className="p-2 bg-white/10 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-white"
+            >
+              <ArrowUpRight size={20} />
+            </motion.div>
+          </div>
+          <p className="text-blue-400 font-medium mb-4">{member.role}</p>
+          <p className="text-slate-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed">
+            {member.bio}
+          </p>
+
+          <div className="flex gap-4 mt-6 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 translate-y-4 group-hover:translate-y-0">
+            <button className="p-2 hover:text-blue-400 text-slate-400 transition-colors"><Linkedin size={20} /></button>
+            <button className="p-2 hover:text-blue-400 text-slate-400 transition-colors"><Twitter size={20} /></button>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+export default function Team() {
+  return (
+    <section id="team" className="relative py-32 bg-slate-50 overflow-hidden">
+      {/* Background Patterns */}
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <div className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-blue-100/50 to-transparent" />
+        <div className="absolute left-0 bottom-0 w-96 h-96 bg-blue-200 blur-3xl rounded-full opacity-30" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10 space-y-28">
-        {/* ABOUT / CLIENT REQUIREMENT */}
-        <div className="about-block max-w-4xl mx-auto text-center">
-          <h2 className="about-heading text-5xl md:text-6xl font-extrabold text-blue-900">
-            Your Trusted Market Research Partner
-          </h2>
+      <div className="max-w-7xl mx-auto px-4 relative z-10 space-y-32">
 
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-8 rounded-full" />
+        {/* Mission / Trusted Partner Section */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight mb-8">
+              Masters of <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Market Intel</span>
+            </h2>
+            <div className="h-1.5 w-24 bg-blue-600 rounded-full" />
+          </motion.div>
 
-          <p className="text-lg text-slate-600 leading-relaxed mb-6">
-            With a team bringing over{" "}
-            <span className="font-semibold text-slate-800">
-              20 years of collective experience
-            </span>{" "}
-            in market research, <span className="font-semibold">VjTH Market Research</span>{" "}
-            is your trusted partner for delivering accurate, data-driven insights.
-            We empower established brands and emerging startups with comprehensive
-            market intelligence and proven research methodologies that support
-            confident business decision-making.
-          </p>
-
-          <p className="text-lg text-slate-600 leading-relaxed">
-            At VjTH, we focus on{" "}
-            <span className="font-semibold text-slate-800">
-              long-term value creation
-            </span>{" "}
-            by transforming complex data into clear, actionable strategies.
-            Our expertise in primary and secondary research enables measurable
-            market-share growth, strategic alignment, and sustainable expansion
-            driven by future market opportunities.
-          </p>
-        </div>
-
-        {/* TEAM HEADER */}
-        <div className="team-header text-center">
-          <h2 className="about-heading text-5xl md:text-6xl font-extrabold text-blue-900">
-            Meet Our Team
-          </h2>
-          <p className="text-xl text-slate-600 font-light">
-            Experienced professionals committed to delivering excellence
-          </p>
-        </div>
-
-        {/* TEAM CARDS */}
-        <div className="grid md:grid-cols-3 gap-10">
-          {team.map((member, index) => (
-            <div
-              key={index}
-              ref={(el) => (cardsRef.current[index] = el)}
-              className="group"
-            >
-              <div className="relative mb-6 overflow-hidden rounded-2xl border border-blue-100 shadow-xl group-hover:shadow-2xl transition-all duration-500">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-blue-900 mb-2 group-hover:text-blue-800 transition">
-                  {member.name}
-                </h3>
-                <p className="text-lg font-semibold text-blue-700">
-                  {member.role}
-                </p>
-              </div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6 text-lg text-slate-600 font-medium leading-relaxed"
+          >
+            <p>
+              With over <span className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">20+ years</span> of collective experience, VjTH is your data architect. We don't just find data; we forge it into strategy.
+            </p>
+            <div className="pl-6 border-l-4 border-blue-500/20 italic text-slate-500">
+              “We focus on long-term value creation by transforming complex data into clear, actionable strategies.”
             </div>
-          ))}
+          </motion.div>
         </div>
+
+        {/* Team Grid */}
+        <div className="space-y-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex items-end justify-between border-b border-slate-200 pb-8"
+          >
+            <div>
+              <h3 className="text-3xl font-bold text-slate-900">The Leadership</h3>
+              <p className="text-slate-500">Architects of your business growth</p>
+            </div>
+            <div className="hidden sm:block text-right">
+              <div className="text-4xl font-black text-slate-200">03</div>
+              <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">Key Members</div>
+            </div>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {team.map((member, i) => (
+              <Card key={i} member={member} index={i} />
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );

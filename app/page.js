@@ -10,13 +10,13 @@ import Team from "@/components/team"
 const page = () => {
   return (
     <>
-    <Header />
-    <Hero />
-    <About />
-     <Team />
-    <Services />
-    <Contact />
-    <Footer />
+      <Header />
+      <Hero />
+      <About />
+      <Team />
+      <Services />
+      <Contact />
+      <Footer />
     </>
   )
 }

@@ -1,153 +1,100 @@
-"use client"
+"use client";
 
-import { Mail, Phone, MapPin } from "lucide-react"
-import { useEffect, useRef } from "react"
-import { useInView } from "react-intersection-observer"
-import gsap from "gsap"
-
-const contactInfo = [
-  {
-    icon: Mail,
-    title: "Email",
-    details: ["info@vjthmr.com", "rfq@vjthmr.com"],
-  },
-  {
-    icon: Phone,
-    title: "Phone",
-    details: ["+91 9500033037", "+91 9980677134"],
-  },
-  {
-    icon: MapPin,
-    title: "Office Locations",
-    details: ["Bangalore – 560091", "Chennai – 600017"],
-  },
-]
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react";
 
 export default function Contact() {
-  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true })
-  const cardsRef = useRef([])
-
-  useEffect(() => {
-    if (inView) {
-      gsap.fromTo(".contact-header", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.8 })
-      cardsRef.current.forEach((card, index) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, delay: index * 0.15, duration: 0.8 }
-        )
-      })
-      gsap.fromTo(".contact-form", { opacity: 0, y: 50 }, { opacity: 1, y: 0, delay: 0.4, duration: 0.9 })
-    }
-  }, [inView])
-
   return (
-    <section
-      id="contact"
-      ref={ref}
-      className="relative py-28 px-4 bg-gradient-to-b from-slate-50 via-white to-white overflow-hidden"
-    >
-      {/* Decorative Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-blue-200/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-indigo-200/20 rounded-full blur-3xl" />
+    <section id="contact" className="relative py-32 bg-slate-50 overflow-hidden text-slate-900">
+      {/* Light Theme Background Pattern */}
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-50 to-transparent" />
+        <div className="absolute left-0 bottom-0 w-96 h-96 bg-blue-100/50 rounded-full blur-[100px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="contact-header mb-20 max-w-3xl">
-          <h2 className="text-5xl md:text-6xl font-extrabold text-blue-900 mb-4">
-            Get In Touch
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-bold uppercase mb-6 shadow-sm">
+            <MessageSquare size={16} /> Get In Touch
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">
+            Partner with <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Excellence</span>
           </h2>
-          <p className="text-xl text-slate-600 font-light">
-            Let’s discuss how our research insights can drive your next decision.
+          <p className="text-slate-600 text-xl max-w-2xl mx-auto font-medium">
+            Ready to elevate your market strategy? Our team is standing by to provide the insights you need.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Info Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
-          {contactInfo.map((info, index) => {
-            const Icon = info.icon
-            return (
-              <div
-                key={index}
-                ref={(el) => (cardsRef.current[index] = el)}
-                className="relative bg-white/80 backdrop-blur-xl p-10 rounded-3xl border border-blue-100 hover:border-blue-300 shadow-lg hover:shadow-2xl transition-all duration-500"
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Info Cards - Light Clean Design */}
+          <div className="lg:col-span-1 space-y-4">
+            {[
+              { icon: Mail, title: "Email Us", txt: "info@vjthmr.com", sub: "Response within 24h" },
+              { icon: Phone, title: "Call Us", txt: "+91 9500033037", sub: "Mon-Fri, 9am-6pm" },
+              { icon: MapPin, title: "Visit HQ", txt: "Bangalore, India", sub: "560091" }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="p-8 rounded-3xl bg-white border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:border-blue-100 transition-all duration-300 flex items-start gap-4"
               >
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-600/5 to-indigo-600/5 opacity-0 hover:opacity-100 transition" />
+                <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">
+                  <item.icon size={24} />
+                </div>
+                <div>
+                  <h4 className="text-slate-900 font-bold text-lg">{item.title}</h4>
+                  <p className="text-slate-600 font-medium">{item.txt}</p>
+                  <p className="text-slate-400 text-xs mt-1">{item.sub}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center mb-6 shadow">
-                    <Icon size={30} className="text-blue-900" />
-                  </div>
-
-                  <h3 className="text-xl font-bold text-blue-900 mb-4">
-                    {info.title}
-                  </h3>
-
-                  <div className="space-y-2 text-slate-600">
-                    {info.details.map((d, i) => (
-                      <p key={i}>{d}</p>
-                    ))}
-                  </div>
+          {/* Main Form - Light Clean Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="lg:col-span-2 bg-white border border-slate-100 rounded-3xl p-8 md:p-12 shadow-2xl shadow-slate-200/50 relative overflow-hidden"
+          >
+            <form className="relative space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-700 ml-1">Full Name</label>
+                  <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-medium" placeholder="John Doe" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-700 ml-1">Work Email</label>
+                  <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-medium" placeholder="john@company.com" />
                 </div>
               </div>
-            )
-          })}
+
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-slate-700 ml-1">How can we help?</label>
+                <textarea rows={5} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-medium resize-none" placeholder="Tell us about your project..." />
+              </div>
+
+              <div className="flex justify-end">
+                <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg shadow-blue-500/30 flex items-center gap-2 hover:scale-105 active:scale-95">
+                  Send Message <Send size={18} />
+                </button>
+              </div>
+            </form>
+          </motion.div>
         </div>
 
-        {/* Contact Form */}
-        <div className="contact-form relative bg-white rounded-[2rem] shadow-2xl p-14 border border-slate-200 max-w-4xl">
-          <h3 className="text-3xl font-bold text-blue-900 mb-10">
-            Send us a Message
-          </h3>
-
-          <form className="space-y-8">
-            <div className="grid md:grid-cols-2 gap-6">
-              <input
-                placeholder="Your Name"
-                className="input-field"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="input-field"
-              />
-            </div>
-
-            <textarea
-              rows={5}
-              placeholder="Your Message"
-              className="input-field resize-none"
-            />
-
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center rounded-xl bg-blue-900 px-12 py-4 font-bold text-white shadow-lg hover:bg-blue-800 hover:scale-105 transition"
-            >
-              Send Message
-            </button>
-          </form>
-        </div>
       </div>
-
-      {/* Input Utility */}
-      <style jsx>{`
-        .input-field {
-          width: 100%;
-          padding: 14px 16px;
-          border-radius: 14px;
-          border: 1px solid #cbd5e1;
-          background: #f8fafc;
-          transition: all 0.3s ease;
-        }
-        .input-field:focus {
-          outline: none;
-          border-color: #2563eb;
-          background: white;
-          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-        }
-      `}</style>
     </section>
-  )
+  );
 }
