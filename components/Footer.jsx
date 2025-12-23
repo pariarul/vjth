@@ -26,6 +26,12 @@ const footerLinks = {
   ]
 };
 
+const socialLinks = [
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/110223105", icon: Linkedin },
+  { name: "Facebook", href: "https://www.facebook.com/share/1AKnpjLpxA/", icon: Facebook },
+  { name: "Instagram", href: "https://www.instagram.com/vjthmr/?utm_source=ig_web_button_share_sheet", icon: Instagram }
+];
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -96,14 +102,14 @@ export default function Footer() {
         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
 
           <div className="flex gap-4">
-            {[Linkedin, Twitter, Facebook, Instagram].map((Icon, i) => (
+            {socialLinks.map((social  , i) => (
               <motion.a
                 key={i}
-                href="#"
+                href={social.href}
                 whileHover={{ y: -5, scale: 1.1 }}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-blue-600 shadow-sm border border-slate-100 hover:border-blue-200 transition-all"
               >
-                <Icon size={18} />
+                <social.icon size={18} />
               </motion.a>
             ))}
           </div>

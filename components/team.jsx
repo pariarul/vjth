@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Linkedin, Twitter, ArrowUpRight } from "lucide-react";
+import { Linkedin, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
 
 const team = [
@@ -10,18 +11,21 @@ const team = [
     role: "Co-Founder & Business Head",
     image: "/Naveen.jpeg",
     bio: "Driving strategic growth and business innovation.",
+    linkedin: "https://www.linkedin.com/in/naveenkumar-r-5a317123b ",
   },
   {
     name: "Govindaiah M T",
     role: "Co-Founder & Director - Client Services",
     image: "/Govindaiah.jpeg",
     bio: "Ensuring client success through dedicated service.",
+    linkedin: "https://www.linkedin.com/in/govindaiah-m-t",
   },
   {
     name: "Kavitha R",
     role: "Associate Director - Project Management",
     image: "/Kavitha.jpeg",
     bio: "Expert project delivery and operational excellence.",
+    linkedin: "https://www.linkedin.com/in/kavitha-r-58408439a",
   },
 ];
 
@@ -59,8 +63,17 @@ const Card = ({ member, index }) => {
           </p>
 
           <div className="flex gap-4 mt-6 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 translate-y-4 group-hover:translate-y-0">
-            <button className="p-2 hover:text-blue-400 text-slate-400 transition-colors"><Linkedin size={20} /></button>
-            <button className="p-2 hover:text-blue-400 text-slate-400 transition-colors"><Twitter size={20} /></button>
+<Link
+  href={member.linkedin}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="p-2 hover:text-blue-400 text-slate-400 transition-colors"
+>
+  <Linkedin size={20} />
+</Link>
+
+
+   
           </div>
         </div>
       </div>
