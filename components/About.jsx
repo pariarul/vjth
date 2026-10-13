@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2, ShieldCheck, Globe2, Award, Target, Zap, Building2, MapPin } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Globe2, Award, Target, Zap, Building2, MapPin, Users } from "lucide-react";
 
 export default function About() {
   const pillars = [
@@ -133,40 +133,122 @@ export default function About() {
         </div>
 
         {/* At a Glance Banner */}
-        <div className="rounded-3xl bg-[#183B56] text-white p-8 sm:p-12 shadow-xl">
-          <div className="text-center max-w-2xl mx-auto mb-10">
+        <div className="rounded-3xl bg-[#183B56] text-white p-5 sm:p-10 shadow-xl">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white text-[10px] font-black uppercase tracking-wider mb-2.5 border border-white/20">
+              <Building2 size={12} />
+              <span>Company Snapshot</span>
+            </div>
             <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
               Company at a Glance
             </h3>
-            <p className="text-sm text-slate-300 font-medium mt-1">
+            <p className="text-xs sm:text-sm text-slate-300 font-medium mt-1">
               Agile research infrastructure backed by seasoned field directors
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-            <div className="p-5 rounded-2xl bg-white/10 border border-white/10">
-              <div className="text-3xl font-black text-white">Market Research</div>
-              <div className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">Industry Domain</div>
-              <div className="text-[11px] text-slate-400 mt-1">Global Data & Insights</div>
-            </div>
+          {/* Desktop 4-Column Layout (hidden lg:grid) */}
+          <div className="hidden lg:grid lg:grid-cols-4 gap-6 text-center">
+            {[
+              {
+                value: "Market Research",
+                label: "Industry Domain",
+                sub: "Global Data & Insights",
+                icon: Globe2,
+              },
+              {
+                value: "2025",
+                label: "Modern Foundation",
+                sub: "Innovative Infrastructure",
+                icon: Building2,
+              },
+              {
+                value: "28M+",
+                label: "Panel Reach",
+                sub: "Verified Panelists",
+                icon: Users,
+              },
+              {
+                value: "Bengaluru",
+                label: "Headquarters",
+                sub: "Karnataka 562162, India",
+                icon: MapPin,
+              },
+            ].map((stat, idx) => {
+              const IconComp = stat.icon;
+              return (
+                <div
+                  key={idx}
+                  className="p-6 rounded-2xl bg-white/10 border border-white/15 hover:bg-white/15 transition-all flex flex-col items-center justify-between text-center"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white mb-4">
+                    <IconComp size={22} />
+                  </div>
+                  <div className="text-2xl xl:text-3xl font-black text-white tracking-tight">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1.5">
+                    {stat.label}
+                  </div>
+                  <div className="text-[11px] text-slate-400 mt-1">
+                    {stat.sub}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
-            <div className="p-5 rounded-2xl bg-white/10 border border-white/10">
-              <div className="text-3xl font-black text-white">2025</div>
-              <div className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">Modern Foundation</div>
-              <div className="text-[11px] text-slate-400 mt-1">Innovative Infrastructure</div>
-            </div>
-
-            <div className="p-5 rounded-2xl bg-white/10 border border-white/10">
-              <div className="text-3xl font-black text-white">28M+</div>
-              <div className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">Panel Reach</div>
-              <div className="text-[11px] text-slate-400 mt-1">Verified Panelists</div>
-            </div>
-
-            <div className="p-5 rounded-2xl bg-white/10 border border-white/10">
-              <div className="text-3xl font-black text-white">Bengaluru</div>
-              <div className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">Headquarters</div>
-              <div className="text-[11px] text-slate-400 mt-1">Karnataka 562162, India</div>
-            </div>
+          {/* Mobile & Tablet Responsive Layout (grid-cols-1 sm:grid-cols-2 lg:hidden) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:hidden gap-3 sm:gap-4">
+            {[
+              {
+                value: "Market Research",
+                label: "Industry Domain",
+                sub: "Global Data & Insights",
+                icon: Globe2,
+              },
+              {
+                value: "2025",
+                label: "Modern Foundation",
+                sub: "Innovative Infrastructure",
+                icon: Building2,
+              },
+              {
+                value: "28M+",
+                label: "Panel Reach",
+                sub: "Verified Panelists",
+                icon: Users,
+              },
+              {
+                value: "Bengaluru",
+                label: "Headquarters",
+                sub: "Karnataka 562162, India",
+                icon: MapPin,
+              },
+            ].map((stat, idx) => {
+              const IconComp = stat.icon;
+              return (
+                <div
+                  key={idx}
+                  className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/15 flex items-center gap-4 text-left shadow-xs hover:bg-white/15 transition-all"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-white shrink-0 shadow-inner">
+                    <IconComp size={22} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-lg sm:text-xl font-black text-white tracking-tight leading-tight">
+                      {stat.value}
+                    </div>
+                    <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300 mt-0.5">
+                      {stat.label}
+                    </div>
+                    <div className="text-xs text-slate-400 mt-0.5 truncate sm:whitespace-normal">
+                      {stat.sub}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
