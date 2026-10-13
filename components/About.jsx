@@ -1,177 +1,173 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import { Target, Users, Zap, CheckCircle2 } from "lucide-react";
-import Image from "next/image";
-
-// 3D Tilt Card Component
-const TiltCard = ({ children, className }) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseX = useSpring(x, { stiffness: 150, damping: 15 });
-  const mouseY = useSpring(y, { stiffness: 150, damping: 15 });
-
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [15, -15]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-15, 15]);
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseXWithOffsetX = e.clientX - rect.left;
-    const mouseYWithOffsetY = e.clientY - rect.top;
-    const xPct = mouseXWithOffsetX / width - 0.5;
-    const yPct = mouseYWithOffsetY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className={`relative transform-gpu transition-all duration-200 ease-out ${className}`}
-    >
-      {children}
-    </motion.div>
-  );
-};
+import React from "react";
+import { CheckCircle2, ShieldCheck, Globe2, Award, Target, Zap, Building2, MapPin } from "lucide-react";
 
 export default function About() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const pillars = [
+    {
+      title: "20+ Years Field Excellence",
+      icon: Award,
+      desc: "Deep domain knowledge across on-the-ground fieldwork, interviewer networks, and multi-tier demographic quotas across India and international markets.",
+    },
+    {
+      title: "Actionable Strategic Focus",
+      icon: Target,
+      desc: "We turn complex raw field findings into structured, decision-ready market intelligence that supports confident business expansion.",
+    },
+    {
+      title: "Comprehensive Methodology",
+      icon: Zap,
+      desc: "From initial survey scripting to CATI/CAWI fieldwork, focus groups, and deep qualitative transcriptions, we handle the entire project lifecycle.",
+    },
+  ];
 
   return (
-    <section
-      id="about"
-      ref={containerRef}
-      className="relative py-32 overflow-hidden bg-slate-50"
-    >
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-50 to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50 pointer-events-none translate-y-1/2 -translate-x-1/2" />
-
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
-
-        {/* Top Section: Text & Visual */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-          {/* Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold uppercase tracking-wider">
-              <Zap className="w-4 h-4 fill-current" />
-              Who We Are
+    <section id="about" className="py-24 bg-white text-[#183B56] border-t border-[#D2E0EC]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Top Story Section */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20">
+          
+          {/* Left Text (7 Cols) */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F0F5FA] border border-[#D2E0EC] text-xs font-black uppercase tracking-wider text-[#183B56]">
+              <span className="w-2 h-2 rounded-full bg-[#183B56]" />
+              <span>Who We Are</span>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight">
-              Empowering Decisions with <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Precision Data</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#183B56] tracking-tight leading-tight">
+              Empowering Decisions with{" "}
+              <span className="text-[#235277]">
+                Precision Field Data
+              </span>
             </h2>
 
-            <p className="text-lg text-slate-600 leading-relaxed font-medium">
-              With a team bringing over <span className="text-slate-900 font-bold">20+ years</span> of collective experience in market research, VjTH Market Research is your trusted partner for delivering accurate, data-driven insights. We empower both established brands and emerging startups with comprehensive market intelligence and strategic research methodologies that support confident business decision-making.
+            <p className="text-base sm:text-lg text-[#183B56]/85 font-medium leading-relaxed">
+              At <strong className="font-black text-[#183B56]">VJTH Market Research</strong>, we are dedicated to delivering high-quality insights and actionable outcomes for clients across global markets. Headquartered in Bengaluru, our strong ground network across India and international regions enables seamless multi-country research with speed, accuracy, and reliability.
             </p>
 
-            <p className="text-lg text-slate-600 leading-relaxed font-medium">
-              At VjTH, we focus on long-term value creation by transforming complex data into clear, actionable strategies. Our expertise spans primary and secondary research, enabling us to deliver reliable insights, strategic recommendations, and measurable market-share growth. We help businesses align their strategic planning with future market opportunities—ensuring sustainable expansion and long-term success.
+            <p className="text-base sm:text-lg text-[#183B56]/85 font-medium leading-relaxed">
+              Our clients value our deep industry expertise, rigorous data collection standards, and hands-on project management to guarantee verified, defensible data for board-level decisions.
             </p>
 
-            <div className="flex flex-col gap-4">
-              {["Global Reach & Local Expertise", "Advanced Analytics & AI", "Customized Research Solutions"].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 + (i * 0.1) }}
-                  className="flex items-center gap-3 text-slate-700 font-semibold"
-                >
-                  <CheckCircle2 className="w-6 h-6 text-green-500 flex-shrink-0" />
-                  {item}
-                </motion.div>
+            {/* Checklist */}
+            <div className="pt-2 grid sm:grid-cols-2 gap-3.5">
+              {[
+                "Global Reach with Local Field Expertise",
+                "Strict Audio & Geo-Audit Quality Control",
+                "Advanced AI-Assisted Telemetry & Sampling",
+                "Multi-Country Speed & Delivery Agility",
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-start gap-2.5 text-sm font-bold text-[#183B56]">
+                  <CheckCircle2 className="w-5 h-5 text-[#183B56] shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right Visual - Parallax Stack */}
-          <div className="relative h-[500px] w-full flex items-center justify-center perspective-[2000px] group">
-            {/* Back Card */}
-            <motion.div
-              style={{ y: useTransform(scrollYProgress, [0, 1], [-50, 50]), rotateZ: -5 }}
-              className="absolute w-80 h-96 bg-purple-600 rounded-3xl shadow-2xl opacity-20 transform scale-90"
-            />
-            {/* Middle Card */}
-            <motion.div
-              style={{ y: useTransform(scrollYProgress, [0, 1], [0, -30]), rotateZ: 5 }}
-              className="absolute w-80 h-96 bg-blue-600 rounded-3xl shadow-2xl opacity-40 transform scale-95"
-            />
-            {/* Front Main Image */}
-            <TiltCard className="relative w-80 h-[450px] bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10" />
-              <img src="/experience.jpg" alt="Team" className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
-
-              <div className="absolute bottom-0 left-0 w-full p-8 z-20 text-white">
-                <div className="text-4xl font-bold mb-2">20+</div>
-                <div className="text-sm text-blue-200 uppercase tracking-widest">Years of Excellence</div>
+          {/* Right Real Image Composition (5 Cols) */}
+          <div className="lg:col-span-5 relative">
+            <div className="rounded-3xl bg-[#F0F5FA] border border-[#D2E0EC] p-5 shadow-xl space-y-4">
+              
+              {/* Image 1: Real Experience Photo */}
+              <div className="relative h-60 w-full rounded-2xl overflow-hidden border border-[#D2E0EC] group">
+                <img
+                  src="/experience.jpg"
+                  alt="VjTH 20+ Years Field Experience"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#183B56]/90 via-[#183B56]/20 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <div className="text-2xl font-black">20+ Years</div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-200">
+                    Field Leadership & Research Excellence
+                  </div>
+                </div>
               </div>
 
-              {/* Floating Element */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute top-6 right-6 p-3 bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 text-white shadow-lg"
-              >
-                <Target size={24} />
-              </motion.div>
-            </TiltCard>
+              {/* Image 2: Real Online Analytics Photo */}
+              <div className="relative h-44 w-full rounded-2xl overflow-hidden border border-[#D2E0EC] group">
+                <img
+                  src="/online-research.jpg"
+                  alt="Online Research and Advanced Telemetry"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0E2436]/80 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white text-xs font-bold">
+                  <span>Advanced Digital Scripting & Analytics</span>
+                  <span className="bg-[#183B56] px-2.5 py-1 rounded-md text-[10px]">Verified</span>
+                </div>
+              </div>
+
+            </div>
           </div>
+
         </div>
 
-        {/* 3D Cards Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            { title: "20+ Years Exp", icon: Users, desc: "Deep domain knowledge across global markets empowering businesses.", color: "bg-blue-500" },
-            { title: "Our Mission", icon: Target, desc: "Turning raw data into meaningful insights for confident decisions.", color: "bg-purple-500" },
-            { title: "What We Deliver", icon: Zap, desc: "End-to-end research solutions tailored to your business goals.", color: "bg-emerald-500" }
-          ].map((card, idx) => (
-            <TiltCard key={idx} className="group h-full">
-              <div className="h-full bg-white rounded-3xl p-8 shadow-xl border border-slate-100 relative overflow-hidden group-hover:shadow-2xl transition-all">
-                <div className={`absolute top-0 right-0 w-32 h-32 ${card.color} opacity-5 rounded-bl-full`} />
-
-                <div className={`w-14 h-14 ${card.color} bg-opacity-10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <card.icon className={`w-7 h-7 ${card.color.replace('bg-', 'text-')}`} />
+        {/* 3 Pillars Cards */}
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
+          {pillars.map((pillar, idx) => (
+            <div
+              key={idx}
+              className="p-8 rounded-3xl bg-[#F0F5FA] border border-[#D2E0EC] hover:border-[#183B56] transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-[#183B56] text-white flex items-center justify-center mb-6 shadow-sm">
+                  <pillar.icon size={24} />
                 </div>
-
-                <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">{card.title}</h3>
-                <p className="text-slate-600 leading-relaxed">
-                  {card.desc}
+                <h3 className="text-xl font-black text-[#183B56] mb-3">
+                  {pillar.title}
+                </h3>
+                <p className="text-sm text-[#183B56]/80 font-medium leading-relaxed">
+                  {pillar.desc}
                 </p>
-
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
               </div>
-            </TiltCard>
+
+              <div className="mt-6 pt-4 border-t border-[#D2E0EC] flex items-center gap-2 text-xs font-black text-[#183B56] uppercase tracking-wider">
+                <span>VjTH Core Principle</span>
+              </div>
+            </div>
           ))}
+        </div>
+
+        {/* At a Glance Banner */}
+        <div className="rounded-3xl bg-[#183B56] text-white p-8 sm:p-12 shadow-xl">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+              Company at a Glance
+            </h3>
+            <p className="text-sm text-slate-300 font-medium mt-1">
+              Agile research infrastructure backed by seasoned field directors
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+            <div className="p-5 rounded-2xl bg-white/10 border border-white/10">
+              <div className="text-3xl font-black text-white">Market Research</div>
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">Industry Domain</div>
+              <div className="text-[11px] text-slate-400 mt-1">Global Data & Insights</div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/10 border border-white/10">
+              <div className="text-3xl font-black text-white">2025</div>
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">Modern Foundation</div>
+              <div className="text-[11px] text-slate-400 mt-1">Innovative Infrastructure</div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/10 border border-white/10">
+              <div className="text-3xl font-black text-white">28M+</div>
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">Panel Reach</div>
+              <div className="text-[11px] text-slate-400 mt-1">Verified Panelists</div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/10 border border-white/10">
+              <div className="text-3xl font-black text-white">Bengaluru</div>
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">Headquarters</div>
+              <div className="text-[11px] text-slate-400 mt-1">Karnataka 562162, India</div>
+            </div>
+          </div>
         </div>
 
       </div>

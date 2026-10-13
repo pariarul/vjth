@@ -12,9 +12,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "VjTH Market Research | Data-Driven Business Insights",
+  metadataBase: new URL("https://www.vjthmr.com"),
+  title: "VjTH Market Research | Global Fieldwork & Strategic Intelligence",
   description:
-    "VjTH Market Research provides data-driven market analysis, field insights, and business intelligence to help organizations make smarter decisions and achieve sustainable growth.",
+    "VjTH Market Research provides data-driven market analysis, global panel access (28M+), field insights, and quantitative & qualitative intelligence to power strategic business decisions.",
 
  keywords: [
     "VjTH Market Research",

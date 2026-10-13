@@ -1,188 +1,173 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import JoinPanelForm from "./JoinPanelForm";
-import Link from "next/link";
-// Removed invalid import
-
-function cn(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 15);
+
+      const sections = ["home", "about", "services", "workflow", "team", "contact"];
+      const scrollPos = window.scrollY + 180;
+
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
     { name: "Home", id: "home" },
-    { name: "About", id: "about" },
+    { name: "About Us", id: "about" },
     { name: "Services", id: "services" },
-    { name: "Team", id: "team" },
-    { name: "Contact", id: "contact" },
+    { name: "Methodology", id: "workflow" },
+    { name: "Leadership", id: "team" },
+    { name: "Contact & RFQ", id: "contact" },
   ];
 
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    el?.scrollIntoView({ behavior: "smooth" });
+  const handleNavClick = (id) => {
     setMobileMenuOpen(false);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className={cn(
-          "fixed z-50 transition-all duration-500 ease-spring",
-          scrolled
-            ? "top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl bg-white/80 backdrop-blur-xl border border-white/40 shadow-2xl rounded-full py-2 px-6"
-            : "top-0 left-0 right-0 w-full bg-white/90 backdrop-blur-md border-b border-slate-100 py-4 px-6 md:px-8"
-        )}
-      >
-        <nav className="flex items-center justify-between w-full h-full">
-          {/* Logo */}
-          <div className="flex items-center gap-3 group cursor-pointer" onClick={() => scrollToSection('home')}>
-            <div className="relative overflow-hidden rounded-xl shadow-lg border border-white/50 group-hover:scale-105 transition-transform">
+    <header
+      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#D2E0EC] py-3.5"
+          : "bg-white/80 backdrop-blur-sm border-b border-[#D2E0EC]/50 py-4.5"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          
+          {/* Logo Section */}
+          <div
+            className="flex items-center gap-3 cursor-pointer group"
+            onClick={() => handleNavClick("home")}
+          >
+            <div className="w-12 h-12 bg-white rounded-xl p-1 border border-[#D2E0EC] shadow-2xs group-hover:border-[#183B56] transition-all flex items-center justify-center">
               <img
                 src="/vjth-logo.png"
-                alt="Logo"
-                className="w-10 h-10 object-cover"
+                alt="VjTH Market Research Logo"
+                className="w-full h-full object-contain"
               />
             </div>
-            <div className="leading-none hidden sm:block">
-              <h1 className="text-base font-bold text-slate-800 tracking-tight">
-                VjTH Market Research
-              </h1>
-              <p className="text-[10px] text-slate-500 font-medium tracking-wide">
-                Bangalore, India
-              </p>
+            <div>
+              <div className="text-xl font-black text-[#183B56] tracking-tight leading-none group-hover:text-[#235277] transition-colors">
+                VjTH
+              </div>
+              <div className="text-[10px] text-[#183B56]/80 font-bold uppercase tracking-widest mt-0.5">
+                Market Research
+              </div>
             </div>
           </div>
 
-          {/* Desktop Menu - Lava Lamp */}
-          <div className="hidden md:flex items-center gap-1 bg-slate-100/50 p-1 rounded-full border border-slate-200/50">
-            {navLinks.map((link, index) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className="relative px-5 py-2 rounded-full text-sm font-semibold text-slate-600 transition-colors hover:text-blue-600"
-              >
-                {hoveredIndex === index && (
-                  <motion.span
-                    layoutId="nav-pill"
-                    className="absolute inset-0 bg-white shadow-sm rounded-full -z-10"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-                {link.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Desktop Join Panel */}
-          <div className="hidden md:flex items-center pl-4">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-full shadow-lg hover:shadow-xl hover:bg-slate-800 transition-all flex items-center gap-2"
-              onClick={() => setModalOpen(true)}
-            >
-              <span>Join Panel</span>
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            </motion.button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-full transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </nav>
-
-        {/* Mobile Menu Dropdown */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: -20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -20 }}
-              className="absolute top-full left-0 right-0 mt-4 mx-2 p-4 bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 md:hidden overflow-hidden flex flex-col gap-2"
-            >
-              {navLinks.map((link) => (
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-1 bg-[#F0F5FA] px-3 py-1.5 rounded-full border border-[#D2E0EC]">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
                 <button
                   key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className="w-full text-center py-3 text-slate-700 font-bold hover:bg-slate-50 rounded-xl transition-colors"
+                  onClick={() => handleNavClick(link.id)}
+                  className={`px-4 py-1.5 text-xs font-bold rounded-full transition-all cursor-pointer ${
+                    isActive
+                      ? "bg-[#183B56] text-white shadow-xs"
+                      : "text-[#183B56] hover:bg-white hover:text-[#183B56]"
+                  }`}
                 >
                   {link.name}
                 </button>
-              ))}
-              <div className="h-px bg-slate-100 my-2" />
-              <button
-                className="w-full py-4 bg-slate-900 text-white font-bold rounded-xl shadow-lg"
-                onClick={() => {
-                  setModalOpen(true);
-                  setMobileMenuOpen(false);
-                }}
-              >
-                Join Panel
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.header>
+              );
+            })}
+          </nav>
 
-      {/* Join Panel Modal */}
-      <AnimatePresence>
-        {modalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
-            onClick={(e) => {
-              if (e.target === e.currentTarget) setModalOpen(false);
-            }}
-          >
-            <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              className="bg-white rounded-3xl w-full max-w-lg p-8 relative shadow-2xl border border-white/20"
+          {/* Desktop Single Form CTA */}
+          <div className="hidden lg:flex items-center gap-3">
+            <button
+              onClick={() => handleNavClick("contact")}
+              className="px-5 py-2.5 bg-[#183B56] hover:bg-[#235277] text-white text-xs font-bold rounded-full shadow-sm hover:shadow transition-all flex items-center gap-2 cursor-pointer"
             >
+              <span>Get in Touch / RFQ</span>
+              <ArrowRight size={14} />
+            </button>
+          </div>
+
+          {/* Mobile Menu Toggle Button */}
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => handleNavClick("contact")}
+              className="px-3.5 py-2 bg-[#183B56] text-white text-xs font-bold rounded-xl"
+            >
+              Contact
+            </button>
+            <button
+              type="button"
+              className="p-2.5 rounded-xl text-[#183B56] bg-[#F0F5FA] hover:bg-[#D2E0EC] border border-[#D2E0EC] transition-colors cursor-pointer"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-white border-b border-[#D2E0EC] shadow-2xl animate-in slide-in-from-top-2 duration-200">
+          <div className="max-w-7xl mx-auto px-5 py-5 space-y-2">
+            <div className="p-3 rounded-xl bg-[#F0F5FA] border border-[#D2E0EC] text-xs font-bold text-[#183B56] flex items-center gap-2 mb-3">
+              <ShieldCheck size={16} className="text-[#183B56]" />
+              <span>Field • Insight • Intellect</span>
+            </div>
+
+            {navLinks.map((link) => (
               <button
-                className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors"
-                onClick={() => setModalOpen(false)}
+                key={link.id}
+                type="button"
+                onClick={() => handleNavClick(link.id)}
+                className="w-full text-left py-3 px-4 rounded-xl text-sm font-bold text-[#183B56] hover:bg-[#F0F5FA] transition-colors flex items-center justify-between cursor-pointer"
               >
-                <X size={20} />
+                <span>{link.name}</span>
+                <ArrowRight size={14} className="text-[#183B56]/50" />
               </button>
+            ))}
 
-              <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                Join Our Panel
-                <span className="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wide">Fast</span>
-              </h2>
-
-              {/* Use separate form component */}
-              <JoinPanelForm />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            <div className="pt-3 border-t border-[#D2E0EC]">
+              <button
+                type="button"
+                onClick={() => handleNavClick("contact")}
+                className="w-full py-3.5 bg-[#183B56] text-white text-xs font-bold rounded-xl text-center shadow-md cursor-pointer"
+              >
+                Request a Research Proposal (RFQ)
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
   );
 }

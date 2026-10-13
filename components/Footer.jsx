@@ -1,121 +1,176 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowUp, Linkedin, Twitter, Facebook, Instagram, ArrowRight, Send } from "lucide-react";
-import Image from "next/image";
+import React from "react";
+import { ArrowUp, Linkedin, Facebook, Instagram, ArrowRight, ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
 
 const footerLinks = {
+  services: [
+    { name: "Quantitative Fieldwork (CLT/F2F)", href: "#services" },
+    { name: "Qualitative Immersion (FGD/IDI)", href: "#services" },
+    { name: "Global Online Panels (28M+)", href: "#services" },
+    { name: "Healthcare Specialized Research", href: "#services" },
+    { name: "Retail & Mystery Shopping Audits", href: "#services" },
+    { name: "Survey Scripting & Logic", href: "#services" },
+  ],
   company: [
-    { name: "About Us", href: "#about" },
-    { name: "Our Team", href: "#team" },
-    { name: "Services", href: "#services" },
-    { name: "Case Studies", href: "#" },
-    { name: "Careers", href: "#contact" }
+    { name: "About VjTH", href: "#about" },
+    { name: "The Leadership", href: "#team" },
+    { name: "Research Methodology", href: "#workflow" },
+    { name: "Core Industry Practice", href: "#home" },
+    { name: "Request a Proposal (RFQ)", href: "#contact" },
   ],
-  legal: [
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms of Service", href: "#" },
-    { name: "Cookie Policy", href: "#" },
-    { name: "Compliance", href: "#" }
+  governance: [
+    { name: "ESOMAR Research Ethics", href: "#" },
+    { name: "Participant Privacy & GDPR", href: "#" },
+    { name: "Strict Non-Disclosure Standard", href: "#" },
+    { name: "Data Security Standards", href: "#" },
   ],
-  support: [
-    { name: "Help Center", href: "#" },
-    { name: "FAQ", href: "#" },
-    { name: "Contact Support", href: "#contact" },
-    { name: "Sitemap", href: "#" }
-  ]
 };
 
 const socialLinks = [
   { name: "LinkedIn", href: "https://www.linkedin.com/company/110223105", icon: Linkedin },
   { name: "Facebook", href: "https://www.facebook.com/share/1AKnpjLpxA/", icon: Facebook },
-  { name: "Instagram", href: "https://www.instagram.com/vjthmr/?utm_source=ig_web_button_share_sheet", icon: Instagram }
+  { name: "Instagram", href: "https://www.instagram.com/vjthmr/?utm_source=ig_web_button_share_sheet", icon: Instagram },
 ];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="relative bg-slate-50 text-slate-600 pt-24 pb-12 overflow-hidden border-t border-slate-200">
-      {/* Massive Watermark */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden select-none flex items-center justify-center">
-        <h1 className="text-[20vw] font-black text-slate-900/[0.03] tracking-tighter leading-none">
-          VjTH
-        </h1>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
-
-        {/* Main Grid */}
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12 lg:gap-8 mb-20">
-
-          {/* Brand & Newsletter */}
-          <div className="space-y-8">
+    <footer className="bg-[#0E2436] text-slate-300 pt-20 pb-12 border-t border-[#183B56]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Main 4-Column Grid */}
+        <div className="grid lg:grid-cols-12 gap-10 pb-16 border-b border-white/10">
+          
+          {/* Brand & Mission (Col 4) */}
+          <div className="lg:col-span-4 space-y-5">
             <div className="flex items-center gap-3">
-              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center p-1 shadow-md border border-slate-100">
-                <Image src="/vjth-logo.png" alt="Logo" width={56} height={56} className="object-cover rounded-xl" />
+              <div className="w-12 h-12 bg-white rounded-xl p-1 shadow-sm flex items-center justify-center">
+                <img
+                  src="/vjth-logo.png"
+                  alt="VjTH Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-slate-900 tracking-tight leading-tight">VjTH Market<br />Research</h3>
+                <div className="text-xl font-black text-white tracking-tight leading-none">
+                  VjTH
+                </div>
+                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">
+                  Market Research
+                </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
-              <h4 className="font-bold text-slate-900 mb-2">Stay Updated</h4>
-              <p className="text-xs text-slate-500 mb-4">Get the latest market insights delivered.</p>
-              <div className="flex gap-2">
-                <input type="email" placeholder="Email" className="w-full bg-slate-50 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all border border-slate-200" />
-                <button className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30">
-                  <Send size={16} />
-                </button>
-              </div>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-medium">
+              VJTH Market Research provides data-driven market analysis, proprietary global panel reach, and actionable intelligence to help organizations make smarter decisions and achieve sustainable growth.
+            </p>
+
+            <div className="text-xs font-black uppercase tracking-widest text-slate-400 pt-2 flex items-center gap-2">
+              <ShieldCheck size={16} className="text-white" />
+              <span>FIELD • INSIGHT • INTELLECT</span>
             </div>
           </div>
 
-          {/* Dynamic Link Columns */}
-          {Object.entries(footerLinks).map(([title, links], colIndex) => (
-            <div key={title} className="lg:pl-8">
-              <h4 className="font-bold text-slate-900 uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
-                <div className="w-8 h-0.5 bg-blue-600 rounded-full" /> {title}
-              </h4>
-              <ul className="space-y-3">
-                {links.map((link, i) => (
-                  <motion.li
-                    key={link.name}
-                    whileHover={{ x: 5 }}
-                    className="flex items-center gap-2"
+          {/* Services Links (Col 3) */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-xs font-black text-white uppercase tracking-wider">
+              Research Capabilities
+            </h4>
+            <ul className="space-y-2.5">
+              {footerLinks.services.map((item, idx) => (
+                <li key={idx}>
+                  <a
+                    href={item.href}
+                    className="text-xs font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1.5"
                   >
-                    <ArrowRight size={12} className="text-blue-500 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    <a href={link.href} className="hover:text-blue-600 transition-colors text-sm font-medium group flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-blue-500 transition-colors" />
-                      {link.name}
-                    </a>
-                  </motion.li>
-                ))}
-              </ul>
+                    <ArrowRight size={11} className="text-slate-400" />
+                    <span>{item.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company Links (Col 2) */}
+          <div className="lg:col-span-2 space-y-4">
+            <h4 className="text-xs font-black text-white uppercase tracking-wider">
+              Company
+            </h4>
+            <ul className="space-y-2.5">
+              {footerLinks.company.map((item, idx) => (
+                <li key={idx}>
+                  <a
+                    href={item.href}
+                    className="text-xs font-medium text-slate-300 hover:text-white transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Standards & Direct HQ (Col 3) */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-xs font-black text-white uppercase tracking-wider">
+              Quality & Governance
+            </h4>
+            <ul className="space-y-2.5">
+              {footerLinks.governance.map((item, idx) => (
+                <li key={idx}>
+                  <a
+                    href={item.href}
+                    className="text-xs font-medium text-slate-300 hover:text-white transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div className="pt-2 text-[11px] text-slate-400">
+              <span className="font-bold text-slate-200">Headquarters:</span> Bengaluru, Karnataka 562162, India
             </div>
-          ))}
+          </div>
 
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-
-          <div className="flex gap-4">
-            {socialLinks.map((social  , i) => (
-              <motion.a
-                key={i}
-                href={social.href}
-                whileHover={{ y: -5, scale: 1.1 }}
-                className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-blue-600 shadow-sm border border-slate-100 hover:border-blue-200 transition-all"
-              >
-                <social.icon size={18} />
-              </motion.a>
-            ))}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-400">
+          <div>
+            &copy; {currentYear} VjTH Market Research. All rights reserved.
           </div>
 
-          <div className="text-center md:text-right text-xs font-semibold text-slate-400 uppercase tracking-wider">
-            <p>&copy; {currentYear} VjTH Market Research. All rights reserved.</p>
+          {/* Social Links & Back to Top */}
+          <div className="flex items-center gap-3">
+            {socialLinks.map((soc, idx) => (
+              <a
+                key={idx}
+                href={soc.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white hover:text-[#0E2436] flex items-center justify-center text-white transition-all cursor-pointer"
+                aria-label={soc.name}
+              >
+                <soc.icon size={16} />
+              </a>
+            ))}
+
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white hover:text-[#0E2436] flex items-center justify-center text-white transition-all cursor-pointer ml-2"
+              title="Back to Top"
+              aria-label="Back to top"
+            >
+              <ArrowUp size={16} />
+            </button>
           </div>
         </div>
 
