@@ -193,7 +193,7 @@ export default function Contact() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="e.g. Ramesh Kumar"
+                        placeholder="Enter your name"
                         className="w-full px-4 py-3 bg-[#F0F5FA] border border-[#D2E0EC] rounded-xl text-xs font-medium text-[#183B56] placeholder:text-[#183B56]/40 focus:outline-none focus:border-[#183B56]"
                       />
                     </div>
@@ -207,7 +207,7 @@ export default function Contact() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="e.g. name@company.com"
+                        placeholder="Enter you Email"
                         className="w-full px-4 py-3 bg-[#F0F5FA] border border-[#D2E0EC] rounded-xl text-xs font-medium text-[#183B56] placeholder:text-[#183B56]/40 focus:outline-none focus:border-[#183B56]"
                       />
                     </div>
@@ -224,7 +224,7 @@ export default function Contact() {
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+91 9876543210"
+                        placeholder="Enter Your Number"
                         className="w-full px-4 py-3 bg-[#F0F5FA] border border-[#D2E0EC] rounded-xl text-xs font-medium text-[#183B56] placeholder:text-[#183B56]/40 focus:outline-none focus:border-[#183B56]"
                       />
                     </div>
@@ -237,7 +237,7 @@ export default function Contact() {
                         type="text"
                         value={formData.organization}
                         onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                        placeholder="e.g. Acme Insights / Mumbai"
+                        placeholder="Your City Name"
                         className="w-full px-4 py-3 bg-[#F0F5FA] border border-[#D2E0EC] rounded-xl text-xs font-medium text-[#183B56] placeholder:text-[#183B56]/40 focus:outline-none focus:border-[#183B56]"
                       />
                     </div>
