@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
+import JoinPanelModal from "./JoinPanelModal";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [isJoinPanelOpen, setIsJoinPanelOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,8 +38,7 @@ export default function Header() {
     { name: "Home", id: "home" },
     { name: "About Us", id: "about" },
     { name: "Services", id: "services" },
-    { name: "Methodology", id: "workflow" },
-    { name: "Leadership", id: "team" },
+    { name: "Team", id: "team" },
     { name: "Contact & RFQ", id: "contact" },
   ];
 
@@ -77,7 +78,7 @@ export default function Header() {
                 VjTH
               </div>
               <div className="text-[10px] text-[#183B56]/80 font-bold uppercase tracking-widest mt-0.5">
-                Market Research
+                Market Research Bangalore, India
               </div>
             </div>
           </div>
@@ -105,10 +106,11 @@ export default function Header() {
           {/* Desktop Single Form CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <button
-              onClick={() => handleNavClick("contact")}
+              type="button"
+              onClick={() => setIsJoinPanelOpen(true)}
               className="px-5 py-2.5 bg-[#183B56] hover:bg-[#235277] text-white text-xs font-bold rounded-full shadow-sm hover:shadow transition-all flex items-center gap-2 cursor-pointer"
             >
-              <span>Get in Touch / RFQ</span>
+              <span>Join Panel</span>
               <ArrowRight size={14} />
             </button>
           </div>
@@ -117,10 +119,10 @@ export default function Header() {
           <div className="lg:hidden flex items-center gap-2">
             <button
               type="button"
-              onClick={() => handleNavClick("contact")}
-              className="px-3.5 py-2 bg-[#183B56] text-white text-xs font-bold rounded-xl"
+              onClick={() => setIsJoinPanelOpen(true)}
+              className="px-3.5 py-2 bg-[#183B56] text-white text-xs font-bold rounded-xl cursor-pointer"
             >
-              Contact
+              Join Panel
             </button>
             <button
               type="button"
@@ -156,11 +158,23 @@ export default function Header() {
               </button>
             ))}
 
-            <div className="pt-3 border-t border-[#D2E0EC]">
+            <div className="pt-3 border-t border-[#D2E0EC] space-y-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setIsJoinPanelOpen(true);
+                }}
+                className="w-full py-3 bg-[#183B56] hover:bg-[#235277] text-white text-xs font-bold rounded-xl text-center shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>Join Research Panel</span>
+                <ArrowRight size={14} />
+              </button>
+
               <button
                 type="button"
                 onClick={() => handleNavClick("contact")}
-                className="w-full py-3.5 bg-[#183B56] text-white text-xs font-bold rounded-xl text-center shadow-md cursor-pointer"
+                className="w-full py-3.5 bg-white border border-[#D2E0EC] text-[#183B56] hover:bg-[#F0F5FA] text-xs font-bold rounded-xl text-center shadow-xs cursor-pointer"
               >
                 Request a Research Proposal (RFQ)
               </button>
@@ -168,6 +182,12 @@ export default function Header() {
           </div>
         </div>
       )}
+
+      {/* Join Panel Popup Modal */}
+      <JoinPanelModal
+        isOpen={isJoinPanelOpen}
+        onClose={() => setIsJoinPanelOpen(false)}
+      />
     </header>
   );
 }

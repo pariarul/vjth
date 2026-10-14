@@ -71,10 +71,7 @@ export default function Hero() {
               />
             </div>
             <div className="p-3 bg-white border-t border-[#D2E0EC] flex items-center justify-between text-[11px] font-bold text-[#183B56]">
-              <span className="flex items-center gap-1">
-                <ShieldCheck size={13} className="text-[#183B56]" />
-                ESOMAR Aligned
-              </span>
+          
               <span>•</span>
               <span className="flex items-center gap-1">
                 <Globe2 size={13} className="text-[#183B56]" />
@@ -273,18 +270,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Bottom Feature Bar */}
-              <div className="mt-3 flex items-center justify-between px-2 text-xs font-bold text-[#183B56]">
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck size={16} className="text-[#183B56]" />
-                  <span>ESOMAR Aligned Quality</span>
-                </div>
-                <span>•</span>
-                <div className="flex items-center gap-1.5">
-                  <Globe2 size={16} className="text-[#183B56]" />
-                  <span>Pan-India & Global Reach</span>
-                </div>
-              </div>
+   
 
             </div>
           </div>

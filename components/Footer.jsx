@@ -20,8 +20,6 @@ const footerLinks = {
     { name: "Request a Proposal (RFQ)", href: "#contact" },
   ],
   governance: [
-    { name: "ESOMAR Research Ethics", href: "#" },
-    { name: "Participant Privacy & GDPR", href: "#" },
     { name: "Strict Non-Disclosure Standard", href: "#" },
     { name: "Data Security Standards", href: "#" },
   ],

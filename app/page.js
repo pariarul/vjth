@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/services";
 import Team from "@/components/team";
-import MethodologyWorkflow from "@/components/MethodologyWorkflow";
+
 
 export default function Page() {
   return (
@@ -14,7 +14,6 @@ export default function Page() {
       <Hero />
       <About />
       <Services />
-      <MethodologyWorkflow />
       <Team />
       <Contact />
       <Footer />

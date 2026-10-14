@@ -16,7 +16,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-export default function JoinPanelForm({ onSuccess }) {
+export default function JoinPanelForm({ onSuccess, onClose }) {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
 
@@ -49,9 +49,9 @@ export default function JoinPanelForm({ onSuccess }) {
     setSubmitted(true);
     setTimeout(() => {
       if (onSuccess) {
-        setTimeout(onSuccess, 3000);
+        onSuccess();
       }
-    }, 1500);
+    }, 2000);
   };
 
   if (submitted) {
@@ -59,7 +59,7 @@ export default function JoinPanelForm({ onSuccess }) {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="py-10 text-center space-y-4"
+        className="py-8 text-center space-y-4"
       >
         <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center">
           <CheckCircle2 size={36} />
@@ -71,10 +71,21 @@ export default function JoinPanelForm({ onSuccess }) {
           Your panelist application has been recorded. We will send study invitations matching your demographic profile directly to{" "}
           <strong className="text-slate-800">{formData.email}</strong>.
         </p>
-        <div className="pt-4 flex items-center justify-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-4 py-2 rounded-full w-fit mx-auto">
+        <div className="pt-2 flex items-center justify-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-4 py-2 rounded-full w-fit mx-auto">
           <Sparkles size={14} />
           <span>Earn rewards for each completed research study</span>
         </div>
+        {onClose && (
+          <div className="pt-3">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-6 py-2.5 bg-[#183B56] hover:bg-[#235277] text-white text-xs font-bold rounded-xl transition-all cursor-pointer shadow-sm"
+            >
+              Close Window
+            </button>
+          </div>
+        )}
       </motion.div>
     );
   }

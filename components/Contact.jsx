@@ -8,12 +8,9 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
-    inquiryType: "Request Research Proposal (RFQ)",
     name: "",
     email: "",
     phone: "",
-    organization: "",
-    methodology: "Quantitative Fieldwork (CLT/F2F)",
     message: "",
   });
 
@@ -164,24 +161,6 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  
-                  {/* Inquiry Type */}
-                  <div>
-                    <label className="block text-xs font-bold text-[#183B56] uppercase tracking-wider mb-1.5">
-                      How Can We Help You? *
-                    </label>
-                    <select
-                      value={formData.inquiryType}
-                      onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
-                      className="w-full px-4 py-3 bg-[#F0F5FA] border border-[#D2E0EC] rounded-xl text-xs font-bold text-[#183B56] focus:outline-none focus:border-[#183B56] cursor-pointer"
-                    >
-                      <option value="Request Research Proposal (RFQ)">Request Research Project Proposal (RFQ)</option>
-                      <option value="Join Research Panel">Join VjTH Research Panel (Participant)</option>
-                      <option value="Sample Feasibility & Quota Check">Sample Feasibility & Quota Check</option>
-                      <option value="General Business Partnership">General Partnership & Vendor Inquiry</option>
-                    </select>
-                  </div>
-
                   {/* Name & Email */}
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
@@ -207,60 +186,25 @@ export default function Contact() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="Enter you Email"
+                        placeholder="Enter your Email"
                         className="w-full px-4 py-3 bg-[#F0F5FA] border border-[#D2E0EC] rounded-xl text-xs font-medium text-[#183B56] placeholder:text-[#183B56]/40 focus:outline-none focus:border-[#183B56]"
                       />
                     </div>
                   </div>
 
-                  {/* Phone & Company */}
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold text-[#183B56] uppercase tracking-wider mb-1.5">
-                        Phone / WhatsApp *
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="Enter Your Number"
-                        className="w-full px-4 py-3 bg-[#F0F5FA] border border-[#D2E0EC] rounded-xl text-xs font-medium text-[#183B56] placeholder:text-[#183B56]/40 focus:outline-none focus:border-[#183B56]"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold text-[#183B56] uppercase tracking-wider mb-1.5">
-                        Organization / City
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.organization}
-                        onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                        placeholder="Your City Name"
-                        className="w-full px-4 py-3 bg-[#F0F5FA] border border-[#D2E0EC] rounded-xl text-xs font-medium text-[#183B56] placeholder:text-[#183B56]/40 focus:outline-none focus:border-[#183B56]"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Primary Methodology */}
+                  {/* Phone */}
                   <div>
                     <label className="block text-xs font-bold text-[#183B56] uppercase tracking-wider mb-1.5">
-                      Methodology Interest
+                      Phone / WhatsApp *
                     </label>
-                    <select
-                      value={formData.methodology}
-                      onChange={(e) => setFormData({ ...formData, methodology: e.target.value })}
-                      className="w-full px-4 py-3 bg-[#F0F5FA] border border-[#D2E0EC] rounded-xl text-xs font-bold text-[#183B56] focus:outline-none focus:border-[#183B56] cursor-pointer"
-                    >
-                      <option value="Quantitative Fieldwork (CLT/F2F)">Quantitative Fieldwork (CLT, HUT, F2F)</option>
-                      <option value="Qualitative Immersion (FGD/IDI)">Qualitative Immersion (FGDs, IDIs, Ethnography)</option>
-                      <option value="Global Online Panels (28M+)">Global Online Panels (28M+ Respondents)</option>
-                      <option value="Healthcare Specialized Research">Healthcare & Medical Practitioner Research</option>
-                      <option value="Retail & Mystery Shopping Audits">Retail & Mystery Shopping Audits</option>
-                      <option value="Survey Scripting & Logic Programming">Survey Scripting & CAWI Programming</option>
-                      <option value="Panelist Registration">Participant / Panelist Sign-up</option>
-                    </select>
+                    <input
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="Enter Your Number"
+                      className="w-full px-4 py-3 bg-[#F0F5FA] border border-[#D2E0EC] rounded-xl text-xs font-medium text-[#183B56] placeholder:text-[#183B56]/40 focus:outline-none focus:border-[#183B56]"
+                    />
                   </div>
 
                   {/* Message */}
