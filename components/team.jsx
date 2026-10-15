@@ -150,9 +150,11 @@ export default function Team() {
                 <p className="text-base sm:text-lg font-semibold text-slate-100 leading-relaxed italic">
                   “We focus on long-term value creation by transforming complex multi-source field data into clear, actionable business strategies.”
                 </p>
-                <div className="mt-3 text-xs font-bold uppercase tracking-wider text-slate-300">
-                  — VjTH Executive Directors
-                </div>
+            
+<div className="mt-3 text-xs font-bold uppercase tracking-wider text-slate-300">
+  — VjTH Market Research
+</div>
+
               </div>
             </div>
 

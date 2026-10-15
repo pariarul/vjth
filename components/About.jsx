@@ -30,42 +30,44 @@ export default function About() {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20">
           
           {/* Left Text (7 Cols) */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F0F5FA] border border-[#D2E0EC] text-xs font-black uppercase tracking-wider text-[#183B56]">
-              <span className="w-2 h-2 rounded-full bg-[#183B56]" />
-              <span>Who We Are</span>
-            </div>
+       
+<div className="lg:col-span-7 space-y-6">
+  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F0F5FA] border border-[#D2E0EC] text-xs font-black uppercase tracking-wider text-[#183B56]">
+    <span className="w-2 h-2 rounded-full bg-[#183B56]" />
+    <span>Who We Are</span>
+  </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#183B56] tracking-tight leading-tight">
-              Empowering Decisions with{" "}
-              <span className="text-[#235277]">
-                Precision Field Data
-              </span>
-            </h2>
+  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#183B56] tracking-tight leading-tight">
+    Empowering Decisions with{" "}
+    <span className="text-[#235277]">
+      Precision Field Data
+    </span>
+  </h2>
 
-            <p className="text-base sm:text-lg text-[#183B56]/85 font-medium leading-relaxed">
-              At <strong className="font-black text-[#183B56]">VJTH Market Research</strong>, we are dedicated to delivering high-quality insights and actionable outcomes for clients across global markets. Headquartered in Bengaluru, our strong ground network across India and international regions enables seamless multi-country research with speed, accuracy, and reliability.
-            </p>
+  <p className="text-base sm:text-lg text-[#183B56]/85 font-medium leading-relaxed">
+    At <strong className="font-black text-[#183B56]">VjTH Market Research</strong>, we are dedicated to delivering high-quality insights and actionable outcomes for clients across global markets. Headquartered in Bengaluru, our strong ground network across India and international regions enables seamless multi-country research with speed, accuracy, and reliability.
+  </p>
 
-            <p className="text-base sm:text-lg text-[#183B56]/85 font-medium leading-relaxed">
-              Our clients value our deep industry expertise, rigorous data collection standards, and hands-on project management to guarantee verified, defensible data for board-level decisions.
-            </p>
+  <p className="text-base sm:text-lg text-[#183B56]/85 font-medium leading-relaxed">
+    Our clients value our deep industry expertise, rigorous data collection standards, and hands-on project management to guarantee verified, defensible data for board-level decisions.
+  </p>
 
-            {/* Checklist */}
-            <div className="pt-2 grid sm:grid-cols-2 gap-3.5">
-              {[
-                "Global Reach with Local Field Expertise",
-                "Strict Audio & Geo-Audit Quality Control",
-                "Advanced AI-Assisted Telemetry & Sampling",
-                "Multi-Country Speed & Delivery Agility",
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-start gap-2.5 text-sm font-bold text-[#183B56]">
-                  <CheckCircle2 className="w-5 h-5 text-[#183B56] shrink-0 mt-0.5" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+  {/* Checklist */}
+  <div className="pt-2 grid sm:grid-cols-2 gap-3.5">
+    {[
+      "Global Reach with Local Field Expertise",
+      "Strict Audio & Geo-Audit Quality Control",
+      "Advanced AI-Assisted Telemetry & Sampling",
+      "Multi-Country Speed & Delivery Agility",
+    ].map((item, idx) => (
+      <div key={idx} className="flex items-start gap-2.5 text-sm font-bold text-[#183B56]">
+        <CheckCircle2 className="w-5 h-5 text-[#183B56] shrink-0 mt-0.5" />
+        <span>{item}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
 
           {/* Right Real Image Composition (5 Cols) */}
           <div className="lg:col-span-5 relative">

@@ -13,9 +13,9 @@ const footerLinks = {
     { name: "Survey Scripting & Logic", href: "#services" },
   ],
   company: [
+    { name: "Home", href: "#home" },
     { name: "About VjTH", href: "#about" },
     { name: "The Leadership", href: "#team" },
-    { name: "Research Methodology", href: "#workflow" },
     { name: "Core Industry Practice", href: "#home" },
     { name: "Request a Proposal (RFQ)", href: "#contact" },
   ],
@@ -46,34 +46,47 @@ export default function Footer() {
         <div className="grid lg:grid-cols-12 gap-10 pb-16 border-b border-white/10">
           
           {/* Brand & Mission (Col 4) */}
-          <div className="lg:col-span-4 space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-white rounded-xl p-1 shadow-sm flex items-center justify-center">
-                <img
-                  src="/vjth-logo.png"
-                  alt="VjTH Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div>
-                <div className="text-xl font-black text-white tracking-tight leading-none">
-                  VjTH
-                </div>
-                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">
-                  Market Research
-                </div>
-              </div>
-            </div>
+   
+<div className="lg:col-span-4 space-y-5">
+  {/* Company Logo and Name */}
+  <div className="flex items-center gap-3">
+    <div className="w-12 h-12 bg-white rounded-xl p-1 shadow-sm flex items-center justify-center shrink-0">
+      <img
+        src="/vjth-logo.png"
+        alt="VjTH Market Research Logo"
+        className="w-full h-full object-contain"
+      />
+    </div>
 
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-medium">
-              VJTH Market Research provides data-driven market analysis, proprietary global panel reach, and actionable intelligence to help organizations make smarter decisions and achieve sustainable growth.
-            </p>
+    <div>
+      <div className="text-xl font-black text-white tracking-tight leading-none">
+        VjTH
+      </div>
 
-            <div className="text-xs font-black uppercase tracking-widest text-slate-400 pt-2 flex items-center gap-2">
-              <ShieldCheck size={16} className="text-white" />
-              <span>FIELD • INSIGHT • INTELLECT</span>
-            </div>
-          </div>
+      <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">
+        Market Research
+      </div>
+
+      <div className="text-[10px] text-slate-400 font-semibold mt-0.5">
+        Bengaluru, India
+      </div>
+    </div>
+  </div>
+
+  {/* Company Description */}
+  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-medium">
+    VjTH Market Research provides data-driven market analysis, global panel
+    reach, and actionable intelligence to help organizations make smarter
+    decisions and achieve sustainable growth.
+  </p>
+
+  {/* Company Tagline */}
+  <div className="flex items-center gap-2 pt-2 text-xs font-black uppercase tracking-widest text-slate-400">
+    <ShieldCheck size={16} className="text-white shrink-0" />
+    <span>FIELD • INSIGHT • INTELLECT</span>
+  </div>
+</div>
+
 
           {/* Services Links (Col 3) */}
           <div className="lg:col-span-3 space-y-4">
