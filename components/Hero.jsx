@@ -183,9 +183,12 @@ export default function Hero() {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg text-[#183B56]/80 font-medium leading-relaxed max-w-2xl">
-              VJTH Market Research delivers high-precision field data collection, proprietary online panel access, and qualitative & quantitative market insights across India and 40+ global territories.
-            </p>
+    <p className="text-sm sm:text-base lg:text-lg text-[#183B56]/80 font-medium leading-relaxed max-w-2xl">
+  <span className="font-bold text-xl sm:text-2xl lg:text-[30px] mb-2">
+    VjTH Market Research
+  </span>
+   delivers high-precision field data collection, proprietary online panel access, and qualitative & quantitative market insights across India and 40+ global territories.
+</p>
 
             {/* CTAs */}
             <div className="flex flex-row items-center gap-4 pt-2">

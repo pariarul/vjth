@@ -104,13 +104,13 @@ export default function JoinPanelModal({
               <div className="space-y-1">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-100/70 border border-blue-200 text-[11px] font-bold text-blue-800">
                   <Users size={12} />
-                  <span>VjTH Global Panel Community</span>
+                  <span>VjTH  Market Research </span>
                 </div>
                 <h2
                   id="join-panel-modal-title"
                   className="text-xl sm:text-2xl font-black text-[#183B56] tracking-tight"
                 >
-                  Join Our Research Panel
+                  Join Our VjTH Market Research Panel
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">
                   Share your voice, shape products & earn rewards for studies.

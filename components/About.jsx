@@ -127,8 +127,8 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#D2E0EC] flex items-center gap-2 text-xs font-black text-[#183B56] uppercase tracking-wider">
-                <span>VjTH Core Principle</span>
+              <div className="mt-6 pt-4 border-t border-[#D2E0EC] flex items-center gap-2 text-xs font-black text-[#183B56] text-sm sm:text-xl lg:text-[15px] tracking-wider">
+                <span>VjTH Market Research</span>
               </div>
             </div>
           ))}

@@ -32,8 +32,10 @@ export default function JoinPanelForm({ onSuccess, onClose }) {
     zipCode: "",
     occupation: "Employed",
     industry: "IT / Tech",
-    incomeRange: "Mid (25k - 75k)",
+    incomeRange: "25k - 75k",
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -44,14 +46,39 @@ export default function JoinPanelForm({ onSuccess, onClose }) {
     setStep(2);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      if (onSuccess) {
-        onSuccess();
-      }
-    }, 2000);
+    setError("");
+
+    const sheetUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL;
+    if (!sheetUrl) {
+      setError("Registration is not configured. Please try again later.");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      // text/plain avoids a CORS preflight, which Apps Script does not support
+      const res = await fetch(sheetUrl, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(formData),
+      });
+      const result = await res.json();
+      if (!result.success) throw new Error(result.error);
+
+      setSubmitted(true);
+      setTimeout(() => {
+        if (onSuccess) {
+          onSuccess();
+        }
+      }, 2000);
+    } catch (err) {
+      console.error("Panel registration failed:", err);
+      setError("Something went wrong while submitting. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -148,7 +175,7 @@ export default function JoinPanelForm({ onSuccess, onClose }) {
                 max="99"
                 value={formData.age}
                 onChange={handleChange}
-                placeholder="e.g. 28"
+                placeholder="Enter your age"
                 className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -165,7 +192,7 @@ export default function JoinPanelForm({ onSuccess, onClose }) {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="name@gmail.com"
+                  placeholder="Enter email address"
                   className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -181,7 +208,7 @@ export default function JoinPanelForm({ onSuccess, onClose }) {
                   required
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="+91 9876543210"
+                  placeholder="Enter mobile number"
                   className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -238,7 +265,7 @@ export default function JoinPanelForm({ onSuccess, onClose }) {
                 required
                 value={formData.city}
                 onChange={handleChange}
-                placeholder="e.g. Bengaluru"
+                placeholder="Enter city name"
                 className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -251,7 +278,7 @@ export default function JoinPanelForm({ onSuccess, onClose }) {
                 required
                 value={formData.country}
                 onChange={handleChange}
-                placeholder="e.g. India"
+                placeholder="Enter country name"
                 className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -263,7 +290,7 @@ export default function JoinPanelForm({ onSuccess, onClose }) {
                 name="zipCode"
                 value={formData.zipCode}
                 onChange={handleChange}
-                placeholder="e.g. 560001"
+                placeholder="Enter pincode or zip code"
                 className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -324,6 +351,12 @@ export default function JoinPanelForm({ onSuccess, onClose }) {
             <span>Your personal data is encrypted and never sold to third parties.</span>
           </div>
 
+          {error && (
+            <p className="text-xs font-semibold text-red-600 bg-red-50 px-3 py-2 rounded-xl">
+              {error}
+            </p>
+          )}
+
           <div className="pt-2 flex items-center justify-between">
             <button
               type="button"
@@ -335,9 +368,10 @@ export default function JoinPanelForm({ onSuccess, onClose }) {
 
             <button
               type="submit"
-              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-bold rounded-xl shadow-lg transition-all flex items-center gap-1.5 cursor-pointer"
+              disabled={submitting}
+              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-bold rounded-xl shadow-lg transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              <span>Complete Panel Registration</span>
+              <span>{submitting ? "Submitting..." : "Complete Panel Registration"}</span>
               <CheckCircle2 size={16} />
             </button>
           </div>

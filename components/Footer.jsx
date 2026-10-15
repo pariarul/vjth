@@ -58,19 +58,15 @@ export default function Footer() {
       />
     </div>
 
-    <div>
-      <div className="text-xl font-black text-white tracking-tight leading-none">
-        VjTH
-      </div>
-
-      <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">
-        Market Research
-      </div>
-
-      <div className="text-[10px] text-slate-400 font-semibold mt-0.5">
-        Bengaluru, India
-      </div>
-    </div>
+<div>
+  <div className="text-xl font-black text-white tracking-tight leading-none group-hover:text-[#235277] transition-colors">
+    VjTH <span className="text-[15px] text-white/80 font-bold  tracking-widest mt-0.5"> Market Research</span> 
+  </div>
+  <div className="text-[10px] text-white/80 font-bold  tracking-widest mt-0.5">
+    
+    <div>Bangalore, India</div>
+  </div>
+</div>
   </div>
 
   {/* Company Description */}

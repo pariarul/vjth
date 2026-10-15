@@ -76,10 +76,10 @@ export default function Header() {
     
 <div>
   <div className="text-xl font-black text-[#183B56] tracking-tight leading-none group-hover:text-[#235277] transition-colors">
-    VjTH
+    VjTH <span className="text-[15px] text-[#183B56]/80 font-bold  tracking-widest mt-0.5"> Market Research</span> 
   </div>
-  <div className="text-[10px] text-[#183B56]/80 font-bold uppercase tracking-widest mt-0.5">
-    Market Research
+  <div className="text-[10px] text-[#183B56]/80 font-bold  tracking-widest mt-0.5">
+    
     <div>Bangalore, India</div>
   </div>
 </div>

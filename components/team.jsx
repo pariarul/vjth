@@ -151,7 +151,7 @@ export default function Team() {
                   “We focus on long-term value creation by transforming complex multi-source field data into clear, actionable business strategies.”
                 </p>
             
-<div className="mt-3 text-xs font-bold uppercase tracking-wider text-slate-300">
+<div className="mt-3 text-xs font-bold  tracking-wider text-slate-300">
   — VjTH Market Research
 </div>
 
